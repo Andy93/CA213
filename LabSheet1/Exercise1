@@ -1,0 +1,7 @@
+class Exercise1{
+	public static void main(String[]args){
+		System.out.println("Whats your name? ");
+		String name= Console.readToken(); // just take first-name , not whole name ... readToken() reads first words
+		System.out.println("Hello "+name);
+	}
+}
