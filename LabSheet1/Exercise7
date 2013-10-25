@@ -1,0 +1,26 @@
+class Exercise7 { // dont use too big of a number , you will see why if you do
+	 public static void main(String[] args){
+		System.out.println("Enter a number? :");
+		int number = Console.readInt();
+        for(int i=1; i<number; i++){
+            if(isPerfect(i)) {
+                System.out.println(i);
+            }
+        }
+    }
+
+    static int sumFacs(int number){
+        int total=0;
+        for(int i=1; i<number; i++){
+            if(number%i==0) total=total+i;
+        }
+        return total;
+    }
+
+    static boolean isPerfect(int number){
+        if(number == sumFacs(number)){
+			return true;
+		}
+        else{ return false;}
+    }
+}
