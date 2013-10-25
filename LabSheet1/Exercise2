@@ -1,0 +1,12 @@
+class Exercise2{
+	public static void main(String[] args){
+		int largest = 0;
+		while(!Console.endOfFile()){
+			int number = Console.readInt();
+			if(number > largest){
+				largest = number;
+			}
+		}
+		System.out.println(largest + " is the largest from the numbers you entered");
+	}
+}
