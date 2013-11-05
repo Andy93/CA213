@@ -1,0 +1,72 @@
+ class Date{ 
+
+   private int day, month, year; // the date
+    
+   //Date(int day,int month, int year){
+	 //  this.day=day;
+	   //this.month=month;
+	   //this.year=year;
+   //}
+
+   Date(){};
+
+   void get() {
+		day = Console.readInt();
+		month = Console.readInt();
+		year = Console.readInt();
+   }
+
+  void put(){
+		System.out.println(day+"/"+month+"/"+year);
+  }
+   
+  boolean postDates(Date d) {
+		if(elapsedDays() > d.elapsedDays()){
+			return true;
+		}
+		else{
+			return false;
+		}
+  }
+
+  private int elapsedDays() {
+  // The number of days elapsed from 1/1/1900 to this date
+    int days = (year-1900)*365+(year-1901)/4; 
+    int k = 1;
+    while (k<month) {
+	int daysInMonth;
+	if (k==9||k==4||k==6||k==11) 
+		daysInMonth = 30;
+	else if (k==2) {
+		if (year%4==0 && year!=1900) daysInMonth = 29;
+		else daysInMonth = 28;
+	}
+	else daysInMonth = 31;
+		days = days + daysInMonth; 
+		k++; 
+    }
+    return days + day;
+  }
+}
+
+class dateTester{
+	public static void main(String [] args){
+
+		Date d1 = new Date();
+		Date d2 = new Date();
+
+		d1.get();
+		d2.get();
+		
+		d1.put();
+		d2.put();
+
+		if(d1.postDates(d2)){
+			d1.put();
+		}
+		else{
+			d2.put();
+		}
+	}
+}
+ 
