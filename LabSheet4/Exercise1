@@ -1,0 +1,85 @@
+import java.util.*;
+class Employee{
+	private String name, department;
+
+	Employee(String name, String department){
+		this.name = name;
+		this.department= department;
+	}
+
+	void put(){
+		System.out.println(name + " " + department);
+	}
+
+	public boolean equals(Employee e){
+		return(name == e.name && department=e.department){
+		
+	}
+}
+
+class Tradesman extends Employee{
+	private String trade;
+
+	Tradesman(String name, String department, String trade){
+		super(name, department);
+		this.trade = trade;
+	}
+
+	void put(){
+		super.put();
+		System.out.println(" " + trade);
+	}
+}
+
+class staff{
+	 private ArrayList<Employee> staff = new ArrayList<Employee>();
+
+    Staff() {}
+
+    boolean hire(Employee e) {
+        return staff.add(e);
+    }
+
+    boolean fire(Employee e) {
+        return staff.remove(e);
+    }
+
+    void put() {
+        for(Employee e: staff) {
+            e.put();
+            System.out.println();
+        }
+	}
+}
+
+class PersonTest{
+	public static void main(String[] args) {  
+		Staff personnel = new Staff();
+			Employee e1 = new Employee("Mike","Sales");
+			Employee e2 = new Tradesman(
+							"Fred","Engineering","Welder");
+			Employee e3 = new Employee("Pat","Sales");
+			Employee e4 = new Tradesman(
+							"Jean","Finishing", "Painter");
+			Employee e5 = new Employee("Bill","Marketing");
+			Employee e6 = new Tradesman(
+							"Anne","Engineering", "Fitter");
+			Employee e7 = new Tradesman(
+							"Paul","Design", "Draughtsman");
+			Employee e8 = new Tradesman(
+							"Eddy","Finishing","Painter");
+			Employee e9 = new Employee("John","Despatch"); 
+			personnel.hire(e1); personnel.hire(e2); 
+			personnel.hire(e3); personnel.hire(e4); 
+			personnel.hire(e5); personnel.hire(e6);
+			personnel.hire(e7); personnel.hire(e8); 
+			personnel.hire(e9); 
+			personnel.put(); System.out.println();
+			personnel.fire(e1); personnel.fire(e5);
+			personnel.fire(e9);
+			personnel.put(); System.out.println();
+			personnel.fire(new Tradesman(
+							"Eddy", "Finishing", "Painter"));				
+			personnel.put(); 
+	}
+}
