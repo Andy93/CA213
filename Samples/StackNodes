@@ -1,0 +1,35 @@
+public static class Node<T>{
+	private T item;
+	private Node<T> next = null;
+
+	Node(T item, Node<T> next){
+		this.item = item;
+		this.next = next;
+	}
+}
+
+class Stack<T>{
+	private Node<T> head = null;
+
+	Stack(){}
+
+	Stack(int n){}
+
+	boolean isEmpty(){
+		return head == null;
+	}
+
+	boolean push(T t){
+		head = new Node<T>(t, head);
+		return true;
+	}
+
+	T pop(){
+		if(head==null){ 
+			return null;
+		}
+		T t = head.item;
+		head = head.next;
+		return t;
+	}
+}
