@@ -1,0 +1,15 @@
+import java.util.*;
+class league{
+	public static void main(String [] args){
+		TreeMap<String,String> map = new TreeMap<>();
+		while(!Console.endOfFile()){
+			String club = Console.readToken();
+			String points = Console.readToken();
+			map.put(club, points);
+		}
+		Set<String> data = map.keySet();
+		for(String s : data){
+			System.out.println(s+ " " + map.get(s));
+		}
+	}
+}
