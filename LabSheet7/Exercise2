@@ -1,0 +1,14 @@
+import java.util.*;
+class inOrder{
+	public static void main(String [] args){
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
+		while(!Console.endOfFile()){
+			int nums = Console.readInt();
+			numbers.add(nums);
+		}
+		Collections.sort(numbers);
+		System.out.println("InOrder:");
+		for(int n : numbers)
+			System.out.print(n);
+	}
+}
