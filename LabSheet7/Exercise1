@@ -1,0 +1,28 @@
+import java.util.*;
+class OddsAndEvens{
+	public static void main(String [] args){
+		ArrayList<Integer> odds = new ArrayList<Integer>();
+		ArrayList<Integer> evens = new ArrayList<Integer>();
+		while(!Console.endOfFile()){
+			int number = Console.readInt();
+			if(number%2 == 0){
+				evens.add(number);
+			}
+			else{
+				odds.add(number);
+			}
+		}
+
+		System.out.println("odds:");
+		for(int n : odds){
+			System.out.print(" " + n);
+		}
+		
+		System.out.println("");
+
+		System.out.println("evens:");
+		for(int n : evens){
+			System.out.print(" " + n);
+		}
+	}
+}
