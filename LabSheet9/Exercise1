@@ -1,0 +1,21 @@
+import java.util.*;
+class Pass{
+	public static void main(String [] args){
+		HashMap<String,String> map = new HashMap<>();
+		while(!Console.endOfFile()){
+			String name =Console.readToken();
+			String pass =Console.readToken();
+			if(pass.equals("?")){
+				if(map.containsKey(name)){
+					System.out.println(map.get(name));
+				}
+				else{
+					System.out.println("fuck off");
+				}
+			}
+			else{
+				map.put(name, pass);
+			}
+		}
+	}
+}
