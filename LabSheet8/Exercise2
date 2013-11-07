@@ -1,0 +1,27 @@
+import java.util.*;
+import java.io.*;
+
+class DodgyPeeps{
+	public static void main(String [] args){
+		HashSet<String> set = new HashSet<>();
+
+		Scanner myFile = null;
+		Scanner nextFile = null;
+
+		try{
+			myFile = new Scanner(new File("unemployed.txt"));
+			nextFile = new Scanner(new File("taxpayers.txt"));
+		} 
+		catch(FileNotFoundException e){e.printStackTrace();};
+		while(myFile.hasNextLine()){
+			String line = myFile.nextLine();
+			set.add(line);
+		}
+		while(nextFile.hasNextLine()){
+			String line = nextFile.nextLine();
+			if(set.contains(line)){
+				System.out.println(line + " is a dodgy person");
+			}
+		}
+	}
+}
