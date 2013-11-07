@@ -1,0 +1,58 @@
+abstract class Shape {
+
+    private String name;
+
+    Shape(String name0) {name = name0;}
+
+    abstract double area(); 
+
+    abstract double perim();
+
+    void put() {
+        System.out.println(name + " with area " + area()+
+ 								" and perimeter " + perim());
+		
+   }
+}
+
+class Rectangle extends Shape {
+
+    private double width, height; 
+
+    Rectangle(String s, double w, double h) {
+        super(s); 
+        width = w; height = h;
+    }
+
+    double area() {return(width*height);} 
+
+    double perim() {return((width+height)*2);} 
+}
+
+class Circle extends Shape {
+
+    private double radius; 
+
+    Circle(String s, double radius0) {
+        super(s);
+        radius = radius0;
+    }
+
+    double area() { 
+        return ((Math.PI)*(radius*radius));
+    }
+
+    double perim() { 
+		return(2 * radius * Math.PI);
+	}
+}
+
+class ShapeTest{
+	public static void main(String args[]) {
+		Shape[] figures = {new Rectangle("Rectangle", 2.0, 
+				3.0), new Rectangle("Square", 4.0, 4.0),
+				new Circle("Circle", 2.0)};
+		for (Shape s: figures) 
+				s.put();
+	}
+}
