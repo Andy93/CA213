@@ -1,0 +1,16 @@
+import java.util.*;
+class OccursPrev{
+	public static void main(String [] args){
+		HashSet<String> set = new HashSet<>();
+		while(!Console.endOfFile()){
+			String word = Console.readString();
+			if(set.contains(word)){
+				System.out.println("Occurred previously");
+			}
+			else{
+				set.add(word);
+				System.out.println("First Occurrence");
+			}
+		}
+	}
+}
