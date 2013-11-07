@@ -1,0 +1,81 @@
+import java.util.*;
+import java.io.*;
+abstract class Person{
+	private String name, address;
+	private boolean sex;
+
+	Person(String name0, String address0, boolean sex0){
+		name = name0;
+		address = address0;
+		sex = sex0;
+	}
+
+	abstract int completionYear();
+
+	void put(){
+		if(sex){
+			System.out.print("male");
+		}
+		else System.out.print("female");
+		 System.out.println(name + " " + address + " " + sex + " ");
+	}
+	
+}
+
+class Student extends Person{
+	private String studentNum, studySubject;
+	private int year;
+
+	Student(String name0, String address0, boolean sex0, String studentNum0, String studySubject0, int year0){
+		super(name0, address0, sex0);
+		studentNum = studentNum0;
+		studySubject = studySubject0;
+		year = year0;
+	}
+
+	int completionYear() {
+        return Calendar.getInstance().get(Calendar.YEAR) + year;
+    }
+
+
+	void put(){
+		 super.put();
+		 System.out.println(studentNum + " " +studySubject + " " + year);
+	}
+
+}
+
+class Lecturer extends Person{
+	private String department, staffNumber;
+
+	Lecturer(String name0, String address0, boolean sex0, String department0, String staffNumber0){
+		super(name0, address0, sex0);
+		department = department0;
+		staffNumber = staffNumber0;
+	}
+
+	int completionYear() {
+        return Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(staffNumber.substring(0,2));
+    }
+
+
+	void put(){
+		super.put();
+		 System.out.println(department +"  " + staffNumber);
+	}
+
+}
+
+class PersonTest{
+	public static void main(String[] args) {  
+		Person[] people = {
+				new Student("Mike Smith","10 Main St", true, 
+										"5023765", "Computing", 2),
+				new Lecturer("Kay Brown", "25 Side St", false, 
+										"Business", "3734564")};
+		for(Person person : people) {
+            person.put();
+            System.out.println();
+        }
+	}
+}
