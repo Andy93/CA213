@@ -61,7 +61,7 @@ class Lecturer extends Person{
 
 	void put(){
 		super.put();
-		 System.out.println(department +"  " + staffNumber);
+		System.out.println(department +"  " + staffNumber);
 	}
 
 }
@@ -74,8 +74,8 @@ class PersonTest{
 				new Lecturer("Kay Brown", "25 Side St", false, 
 										"Business", "3734564")};
 		for(Person person : people) {
-            person.put();
-            System.out.println();
-        }
+            		person.put();
+        		System.out.println();
+        	}
 	}
 }
