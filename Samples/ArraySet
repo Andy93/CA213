@@ -1,0 +1,36 @@
+class ArraySet<T> { 
+	
+	private T[] seq = (T[])(new Object[1024]); 
+	private int numItems = 0; // seq[0..numItems-1] significant
+		
+	public int size() {return(numItems);}
+
+	public boolean add(T t) { 
+		if (contains(t)) return false;
+		if (numItems==seq.length) resize();
+		seq[numItems] = t; numItems++; return true; 
+	}
+	
+	private void resize() { // seq is full -- double its size
+		T[] temp = (T[])(new Object[seq.length*2]); // bigger array
+		for (int i=0; i<seq.length; i++) // copy over items 
+			temp[i] = seq[i];
+		seq = temp; 
+	}
+
+	public boolean remove(T t) { 
+		int i = 0; 
+		while (i<numItems && !equals(seq[i],t)) i++; // find t
+		if (i==numItems) return false; // t absent
+		else {
+			numItems--;
+			seq[i] = seq[numItems]; // fill gap at i with item at end 
+			return true;
+		}
+	}
+		
+  	private boolean equals(T t1, T t2) { 
+		if (t1!=null) return t1.equals(t2);
+		else return t2==null;
+	}
+}
