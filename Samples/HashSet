@@ -1,0 +1,32 @@
+class HashSet<T> { 
+	private SimpleSet<T>[] ht; // hash table 
+
+	HashSet(){ 
+		ht=(SimpleSet<T>[])(new Simpleset [l024]) ; 
+		for (int i=O; i<ht.length; i++) 
+		ht[i] = new SimpleSet<T>() ; 
+	} 
+
+	private int hash(T t) { 
+		return Math.abs(t.hashCode()%ht.length)
+	} 
+
+	int size(){
+		int n=0;
+		for(int i=0;i<ht.length;i++){
+			n = m+ht[i].size();
+		return n;
+	} 
+
+	boolean contains (T t) { 
+		return ht[hash(t)].contains(t);
+	}
+
+	boolean add(T t){
+		return ht[hash(t)].add(t);
+	} 
+
+	boolean remove(T t){} 
+		return ht[hash(t)].remove(t);
+	}
+}
