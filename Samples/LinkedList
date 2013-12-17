@@ -1,5 +1,4 @@
 import java.util.*;
-    
 class LinkedList<T> {
 		
 	private static class Node<T> {            
@@ -67,11 +66,15 @@ class LinkedList<T> {
 	public T remove(int i){
 		if (i<0 || i>numItems){ throw new IndexOutOfBoundsException();}
 		Node<T> p = head;
+		Node<T> parent = null;
+		parent = p;
 		for(int index = 0;index<numItems;index++){
 			if(index == i){
+				parent.next = p.next
 				numItems--;
 			}
 			else{
+				parent= p;
 				p=p.next;
 			}
 		}
@@ -79,7 +82,11 @@ class LinkedList<T> {
 	}
 
 	public void print(){
-		System.out.println(numItems);
+		Node<T> p = head;
+		while(p!=null){
+			System.out.println(" "+ p.item);
+			p= p.next;
+		}
 	}
 	
 }
