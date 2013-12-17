@@ -1,0 +1,126 @@
+import java.util.*;
+    
+class IntegerList{
+		
+	private static class Node{            
+		private int item; 				// data       
+		private Node next;			// successor node 
+	                                                          
+		Node(int item0, Node next0) { 
+			item = item0; next = next0;
+		}
+	}
+		
+	private Node head = null; // first node (null if list empty)
+	private Node tail = null; // final node (null if list empty)
+	private int numItems = 0;	  // number of items
+
+	public int size(){return(numItems);}
+
+	public int get(int i){
+		if (i<0||i>=numItems) throw new IndexOutOfBoundsException();
+		Node p = head; int pIndex = 0; // Node p at index pIndex
+		while (pIndex!=i) {
+			p = p.next; pIndex++;
+		}
+		return p.item;
+	}
+
+	public int set(int i, int t){
+		if (i<0||i>=numItems) throw new IndexOutOfBoundsException();
+		Node p = head; int pIndex = 0; // Node p at index pIndex
+		while (pIndex!=i) {
+			p = p.next; pIndex++;
+		}
+		int temp = p.item; p.item = t;
+		return temp;
+	}
+	
+	public boolean add(int t){ 
+		Node tNode = new Node(t,null); // new tail node
+		if (tail!=null) tail.next = tNode; 
+		else head = tNode;
+		tail = tNode;
+		numItems++;
+		return true; // for compatibility reasons only
+	}
+
+	public void add(int i, int t){ 
+		if (i<0 || i>numItems) throw new IndexOutOfBoundsException();
+		if (i==0) { // insert at front
+			head = new Node(t,head);
+			if (tail==null) tail = head;
+		}
+		else { // not at front
+			Node p = head;
+			int index = 1; // p references node at position index-1
+			while (index!=i) {
+				p = p.next; index++;
+			} // node p at position i-1
+			p.next = new Node(t,p.next); // insert t following p
+			if (tail==p) tail = p.next;
+		}
+		numItems++;
+	}
+
+	public void LeftRotate(){
+		if(head == null ) return;
+		if(numItems == 1) return;
+		else{
+			Node temp = head;
+			head = head.next;
+			tail.next = temp;
+			tail = tail.next;
+			tail.next = null;
+		}
+	}
+
+	public void remove(int i){
+		if (i<0 || i>numItems) throw new IndexOutOfBoundsException();
+		Node p = head;
+		Node parent = null;
+		parent = p;
+		for(int index=0;index<numItems;index++){
+			if(index==i){
+				parent.next=p.next;
+				numItems--;
+			}else{
+				parent = p;
+				p=p.next;
+			}
+		}
+	}
+
+
+	public String toString(){//list as string (simple but inefficient) 
+		if (numItems==0) return "[]"; // special case: empty list
+		String string = "[" + head.item; // the string
+		Node p = head.next; // remains to stringify elements from p on
+		while (p!=null){
+			string = string + ", " + p.item; 
+			p = p.next;
+		}
+		string = string + "]";
+		return string;
+	}	
+}
+
+class IntegerListTest {
+    public static void main(String[] args) {
+        IntegerList items = new IntegerList();
+        items.add(7);
+    		items.add(17);
+    		items.add(3);
+    		items.add(5);
+    		items.add(9);
+    		items.add(10);
+     
+    		items.remove(1);
+    		items.remove(0);
+    		//items.LeftRotate();
+    		System.out.println(items.toString());
+    		items.remove(2);
+    		System.out.println(items.toString());
+
+    }
+}
