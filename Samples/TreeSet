@@ -1,0 +1,85 @@
+import java.util.*;
+
+class TreeSet<T extends Comparable<T>> {
+    private static class Node<T> {
+        private T item;
+        private Node<T> left, right;
+
+        Node(T item0, Node<T> left0, Node<T> right0) {
+            item = item0;
+            left = left0;
+            right = right0;
+        }
+    }
+
+    private Node<T> root = null;
+    private int numItems = 0;
+
+    public int size() {
+        return numItems = 0;
+    }
+
+    public boolean add(T t) {
+        int numItems0 = numItems;
+        root = add(root,t);
+        return numItems0<numItems;
+    }
+
+    private Node<T> add(Node<T> p, T t) {
+        if (p==null) {
+            numItems++;
+            return new Node<T>(t,null,null);
+        } else if ((p.item).compareTo(t)>0) {
+            p.left = add(p.left,t);
+            return p;
+        } else if (t.compareTo(p.item)>0) {
+            p.right = add(p.right,t);
+            return p;
+        } else {
+            return p;
+        }
+    }
+
+	public boolean remove(T t){
+		int numItems0 = numItems;
+		root = remove(root, t);
+		return numItems0 > numItems;
+	}
+
+	private Node<T> remove(Node<T> p, T t) {
+		if (p==null)
+			return p;
+		else if ((p.item).compareTo(t)>0) {
+			p.left = remove(p.left,t); 
+			return p;
+		}
+		else if ((p.item).compareTo(t)>0) { 
+			p.right = remove(p.right,t); 
+			return p;
+		}
+		else { 
+			numItems--;
+			return mergeTrees(p.left,p.right);			
+		}
+	} 
+
+	private Node<T> mergeTrees(Node<T> p, Node<T> q) {
+		if (q==null)
+			return p;
+		else if (q.left==null) { 
+			q.left = p;
+			return q;
+		}
+		else {
+			Node<T> ptr = q.left; 
+			Node<T> ptrParent = q; 
+			while (ptr.left!=null) {
+				ptrParent = ptr; ptr = ptr.left;
+			}
+			ptrParent.left = ptr.right; 
+			ptr.left = p; ptr.right = q; 
+			return ptr;
+		}
+		
+	}
+}
